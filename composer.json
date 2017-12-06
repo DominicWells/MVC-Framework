@@ -1,6 +1,7 @@
 {
   "require": {
       "phpmailer/phpmailer": "~5.2",
-      "twig/twig": "~1.0"
+      "twig/twig": "~1.0",
+    "twbs/bootstrap": "4.0.0-beta.2"
   }
 }
