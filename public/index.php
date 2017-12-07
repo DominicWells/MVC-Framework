@@ -6,11 +6,6 @@
  *
  */
 
-//echo "Requested URL = " . $_SERVER['QUERY_STRING'];
-
-//require the controller class
-//require("../application/controllers/Home/Posts.php");
-
 /**
  * Twig
  */
@@ -21,8 +16,6 @@ Twig_Autoloader::register();
  *
  * Routing
  */
-
-//require("../core/Router.php");
 
 /**
  * Autoloader
@@ -47,27 +40,8 @@ $router = new core\Router();
 //add our routes
 $router->add('',array('controller' => 'Home', 'action' => 'index' ));
 $router->add('posts', array('controller' => 'Posts', 'action' => 'index'));
-//$router->add('posts/new', array('controller' => 'Posts', 'action' => 'new'));
 $router->add('{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
 $router->add('admin/{controller}/{action}',['namespace' => 'admin']);
 
-
-//display routing table
-//echo "<pre>";
-//print_r($router->getRoutes());
-//echo htmlspecialchars(print_r($router->getRoutes(), true));
-//echo "</pre>";//
-
-//match the requested route
-//$url = $_SERVER['QUERY_STRING'];
-//
-//if ($router->match($url)) {
-//
-//    echo "<pre>";
-//    print_r($router->getParams());
-//    echo "</pre>";
-//} else {
-//    echo "No route found for that URL :(";
-//}
 $router->dispatch($_SERVER["QUERY_STRING"]);

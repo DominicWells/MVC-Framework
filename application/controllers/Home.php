@@ -42,14 +42,6 @@ class Home extends Controller
      */
     public function indexAction()
     {
-        /*View::render("Home/index.php",array(
-            'name' => 'Dominic',
-            'colours' => array(
-                'red',
-                'green',
-                'blue'
-            )
-        ));*/
         View::renderTemplate("Home/index.html",array(
             'name' => 'Dominic',
             'colours' => array(
