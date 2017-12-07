@@ -1,8 +1,12 @@
 /*
-Home Page
+Submissions
  */
 
 .form-actions {
     text-align: center;
+}
 
+#submission {
+    cursor: pointer;
+    margin-top: 10px;
 }
