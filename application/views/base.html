@@ -2,16 +2,35 @@
 <html lang="en">
 <head>
     <!-- Bootstrap 4.0 beta -->
+    <link rel="stylesheet" href="../../public/css/bootstrap.css" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!-- required meta tags -->
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/posts/index">Posts</a>
-    </nav>
-    {% block body %}
-    {% endblock %}
+    <div class="container-fluid">
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/posts/index">Posts</a>
+        </nav>
+        <div class="container">
+            <!-- Main Content Body -->
+        {% block body %}
+        {% endblock %}
+            <!-- End Main Content Body -->
+        </div>
+        <footer class="fixed-bottom">
+            <div class="container">
+                <h6>Copyright Dominic Wells 2017 &copy;</h6>
+                <ul class="list-group">
+                    <li class="list-group-item">Contact</li>
+                    <li class="list-group-item">Address</li>
+                    <li class="list-group-item">Company</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
