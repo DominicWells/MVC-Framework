@@ -2,7 +2,9 @@
 namespace application\controllers;
 
 use \core\Controller;
+use core\Router;
 use \core\View;
+use \application\controllers\admin;
 
 class Home extends Controller
 {
@@ -14,6 +16,13 @@ class Home extends Controller
     protected function before()
     {
         //check if session already exists.
+        $user_ip = $_SERVER["REMOTE_ADDR"];
+        if (\application\models\Users::checkIP($user_ip)) {
+            return;
+        } else {
+            //ban IP, give error message.
+            \application\models\Users::banIP($user_ip);
+        }
     }
 
     /**
@@ -34,34 +43,60 @@ class Home extends Controller
      */
     public function indexAction()
     {
-        //if user is not logged in, we need to get them to do so ASAP so they can use the site.
-        View::renderTemplate("Home/index.html");
-
         if (isset($_POST['submit'])) {
-
-            $username = $_POST['user'];
-            $key = $_POST['key'];
-
-            //$key = password_hash($key,PASSWORD_BCRYPT);
-
-            $username = htmlspecialchars($username);
-
-            $user = \application\models\Home::checkCredentials($username,$key);
-
-            if ($user) {
-
-                switch ($user) {
-
-                    case "admin":
-                        echo "admin";
-
-                }
-
-            } else {
-                //the credentials are incorrect - show an error message to the user.
-
-            }
+            $this->login();
         }
 
+        $user_ip = $_SERVER["REMOTE_ADDR"];
+
+        $attempts = \application\models\Home::checkLoginAttempts($user_ip);
+
+        $errors = [];
+
+        if ($attempts !== 0) {
+            $remaining_attempts = 3 - $attempts;
+            $errors[] = "Incorrect Credentials. Please retry! You have " . $remaining_attempts . " remaining attempt(s).";
+        }
+        View::renderTemplate("Home/index.html", array(
+            "errors" => $errors
+        ));
     }
+
+    public function login()
+    {
+        $username = $_POST['user'];
+        $key = $_POST['key'];
+
+        //$key = password_hash($key,PASSWORD_BCRYPT);
+
+        $username = htmlspecialchars($username);
+
+        $user = \application\models\Home::checkCredentials($username,$key);
+
+        if ($user) {
+
+            switch ($user) {
+
+                case "admin":
+                    echo "admin";
+                    break;
+
+                case "student":
+                    echo "student";
+                    break;
+                }
+        } else {
+            //the credentials are incorrect.
+            $user_ip = $_SERVER["REMOTE_ADDR"];
+            $current_time = date("Y-m-d h:i:sa");
+            \application\models\Home::updateLoginAttempts($user_ip,$current_time);
+
+            $attempts = \application\models\Home::checkLoginAttempts($user_ip);
+
+            if ($attempts === 3) {
+                \application\models\Users::banIP($user_ip);
+            }
+        }
+    }
+
 }
