@@ -1,12 +1,21 @@
 /*
-Submissions
+Submissions and Forms
  */
 
-.form-actions {
-    text-align: center;
+.login-form {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-#submission {
+.error-list {
+    list-style-type: none;
+}
+
+#login-form-error {
+    display: none;
+}
+
+#login-form-submission {
     cursor: pointer;
     margin-top: 10px;
 }
