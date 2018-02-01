@@ -15,14 +15,7 @@ class Home extends Controller
      */
     protected function before()
     {
-        //check if session already exists.
-        $user_ip = $_SERVER["REMOTE_ADDR"];
-        if (\application\models\Users::checkIP($user_ip)) {
-            return;
-        } else {
-            //ban IP, give error message.
-            \application\models\Users::banIP($user_ip);
-        }
+
     }
 
     /**
@@ -45,6 +38,8 @@ class Home extends Controller
     {
         if (isset($_POST['submit'])) {
             $this->login();
+            // if login attempt fails, redirect to prevent user form resubmission
+            $this->redirect('');
         }
 
         $user_ip = $_SERVER["REMOTE_ADDR"];
@@ -62,6 +57,12 @@ class Home extends Controller
         ));
     }
 
+    /**
+     *
+     * validate the user's input and handle accordingly.
+     *
+     * @return void
+     */
     public function login()
     {
         $username = $_POST['user'];
@@ -78,7 +79,11 @@ class Home extends Controller
             switch ($user) {
 
                 case "admin":
-                    echo "admin";
+                    // create a session first.
+
+                    // once session is created, send user to the admin page.
+                    $this->redirect( "/admin/users/index");
+                    exit;
                     break;
 
                 case "student":
