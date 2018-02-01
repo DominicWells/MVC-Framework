@@ -63,4 +63,15 @@ abstract class Controller
 
     }
 
+    /**
+     * @param $location: Query String.
+     *
+     * @return void
+     */
+    protected function redirect($location)
+    {
+        header("Location: http://" . $_SERVER["HTTP_HOST"] . $location);
+        exit;
+    }
+
 }
