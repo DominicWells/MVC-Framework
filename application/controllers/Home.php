@@ -42,9 +42,7 @@ class Home extends Controller
             $this->redirect('');
         }
 
-        $user_ip = $_SERVER["REMOTE_ADDR"];
-
-        $attempts = \application\models\Home::checkLoginAttempts($user_ip);
+        $attempts = \application\models\Home::checkLoginAttempts($this->user_ip);
 
         $errors = [];
 
@@ -92,14 +90,15 @@ class Home extends Controller
                 }
         } else {
             //the credentials are incorrect.
-            $user_ip = $_SERVER["REMOTE_ADDR"];
             $current_time = date("Y-m-d h:i:sa");
-            \application\models\Home::updateLoginAttempts($user_ip,$current_time);
+            \application\models\Home::updateLoginAttempts($this->user_ip,$current_time);
 
-            $attempts = \application\models\Home::checkLoginAttempts($user_ip);
+            $attempts = \application\models\Home::checkLoginAttempts($this->user_ip);
+            echo $attempts;
 
-            if ($attempts === 3) {
-                \application\models\Users::banIP($user_ip);
+            if ($attempts > 3) {
+                \application\models\Users::banIP($this->user_ip);
+
             }
         }
     }
