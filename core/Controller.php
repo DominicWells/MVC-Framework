@@ -15,6 +15,12 @@ abstract class Controller
     protected $route_params = [];
 
     /**
+     * The current user's IP Address
+     * @var string
+     */
+    protected $user_ip;
+
+    /**
      * Class constructor.
      * @param array $route_params Parameters from the route
      * @return void
@@ -22,6 +28,22 @@ abstract class Controller
     public function __construct($route_params)
     {
         $this->route_params = $route_params;
+        $this->user_ip = $_SERVER['REMOTE_ADDR'];
+        $this->checkAccess();
+    }
+
+    /**
+     * Check current IP is valid before creating a new controller instance. If not, serve up an error template and prevent from accessing the site.
+     *
+     * @return void
+     */
+    protected function checkAccess()
+    {
+        if (\application\models\Users::checkIP($this->user_ip) === false) {
+
+            View::renderTemplate("Misc/index.html");
+            exit();
+        }
     }
 
     /**
