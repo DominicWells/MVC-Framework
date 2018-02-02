@@ -3,10 +3,10 @@
 namespace application\controllers\admin;
 
 /**
- * Class Users
+ * Class Admin
  * @package application\controllers\admin
  */
-class Users extends \core\Controller
+class Admin extends \core\Controller
 {
     /**
      * Before Filter

@@ -80,12 +80,14 @@ class Home extends Controller
                     // create a session first.
 
                     // once session is created, send user to the admin page.
-                    $this->redirect( "/admin/users/index");
-                    exit;
+                    $this->redirect( "/admin/index");
                     break;
 
                 case "student":
-                    echo "student";
+                    // create a session first.
+
+                    // once session is created, send user to the student profile page.
+                    $this->redirect("student/index");
                     break;
                 }
         } else {

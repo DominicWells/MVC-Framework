@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dom-Wells
- * Date: 02/02/2018
- * Time: 21:14
- */
 
-namespace Student;
+namespace application\controllers\student;
 
 
-class Student
+class Student extends \core\Controller
 {
-
+    public function indexAction()
+    {
+        echo "hello from the student's profile page";
+    }
 }
