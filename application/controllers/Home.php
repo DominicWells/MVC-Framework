@@ -77,17 +77,13 @@ class Home extends Controller
             switch ($user) {
 
                 case "admin":
-                    // create a session first.
-
-                    // once session is created, send user to the admin page.
+                    $this->startSession($this->user_ip,$key,$user);
                     $this->redirect( "/admin/index");
                     break;
 
                 case "student":
-                    // create a session first.
-
-                    // once session is created, send user to the student profile page.
-                    $this->redirect("student/index");
+                    $this->startSession($this->user_ip,$key,$user);
+                    $this->redirect("/student/index");
                     break;
                 }
         } else {
@@ -96,13 +92,30 @@ class Home extends Controller
             \application\models\Home::updateLoginAttempts($this->user_ip,$current_time);
 
             $attempts = \application\models\Home::checkLoginAttempts($this->user_ip);
-            echo $attempts;
 
             if ($attempts > 3) {
                 \application\models\Users::banIP($this->user_ip);
 
             }
         }
+    }
+
+    /**
+     * Once user is validated, start a session so that he/she can continue to access the site
+     *
+     * @param $user_ip: the current user's IP
+     * @param $key: The current user's validated key
+     * @param $user: The current user privileges
+     *
+     * @return void
+     */
+    private function startSession($user_ip,$key,$user)
+    {
+        session_start();
+
+        $_SESSION['IP'] = $user_ip;
+        $_SESSION['user_key'] = $key;
+        $_SESSION['user_type'] = $user;
     }
 
 }
