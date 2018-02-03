@@ -96,4 +96,15 @@ abstract class Controller
         exit;
     }
 
+    protected function getSessionVariables()
+    {
+        session_start();
+
+        if (isset($_SESSION['user_key'])) {
+            return $_SESSION;
+        } else {
+            session_destroy();
+            $this->redirect("");
+        }
+    }
 }

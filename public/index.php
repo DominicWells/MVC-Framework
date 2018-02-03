@@ -42,7 +42,7 @@ $router->add('',array('controller' => 'Home', 'action' => 'index' ));
 $router->add('posts', array('controller' => 'Posts', 'action' => 'index'));
 $router->add('{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
-$router->add('{controller}/{action}',['namespace' => 'Admin']);
-$router->add('{controller}/{action}',['namespace' => 'Student']);
+$router->add('{controller}/{action}',['namespace' => 'Users']);
+$router->add('{controller}/{action}',['namespace' => 'Users']);
 
 $router->dispatch($_SERVER["QUERY_STRING"]);
