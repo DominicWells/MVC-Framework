@@ -1,12 +1,13 @@
 <?php
 
-namespace application\controllers\Admin;
+namespace application\controllers\Users;
 
+use application\controllers\Users;
 /**
  * Class Admin
  * @package application\controllers\admin
  */
-class Admin extends \core\Controller
+class Admin extends \core\Controller implements Users
 {
     /**
      * Before Filter
@@ -14,18 +15,37 @@ class Admin extends \core\Controller
      */
     protected function before()
     {
-        //$this->sessionInit();
-        if (session_status() == PHP_SESSION_NONE) {
-            echo "no session";
-        } else {
-            echo "is a session";
+        // redirects user to login page if false.
+        $this->redirectIfNotLoggedIn();
+        // redirects user to student index if student logged in.
+        $this->redirectIfNoPermission();
+    }
+
+    /**
+     * Method that must be called for all User Inherited Controllers. Redirect user to log-in page if not logged in
+     *
+     * @return void
+     */
+    public function redirectIfNotLoggedIn()
+    {
+        $this->getSessionVariables();
+    }
+
+    /**
+     * Method that must be called for all User Inherited Controllers. Redirect student to student index page
+     *
+     * @return void
+     */
+    public function redirectIfNoPermission()
+    {
+        if ($_SESSION['user_type'] == 'student') {
+            $this->redirect("/student/index");
         }
-        //ensure admin is logged in, for example.
-        //return false;
     }
 
     /**
      * Show the index page
+     *
      * @return void
      */
     public function indexAction() {
