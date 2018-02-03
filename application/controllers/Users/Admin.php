@@ -1,6 +1,6 @@
 <?php
 
-namespace application\controllers\admin;
+namespace application\controllers\Admin;
 
 /**
  * Class Admin
@@ -14,6 +14,12 @@ class Admin extends \core\Controller
      */
     protected function before()
     {
+        //$this->sessionInit();
+        if (session_status() == PHP_SESSION_NONE) {
+            echo "no session";
+        } else {
+            echo "is a session";
+        }
         //ensure admin is logged in, for example.
         //return false;
     }
