@@ -96,6 +96,11 @@ abstract class Controller
         exit;
     }
 
+    /**
+     * Returns Session Variables if user is logged in, otherwise redirects to login page.
+     *
+     * @return mixed
+     */
     protected function getSessionVariables()
     {
         session_start();
