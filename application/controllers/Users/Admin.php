@@ -10,7 +10,7 @@ use application\controllers\Users;
 class Admin extends \core\Controller implements Users
 {
     /**
-     * Before Filter
+     * Before Filter - called before an action method.
      * @return void
      */
     protected function before()
@@ -41,6 +41,16 @@ class Admin extends \core\Controller implements Users
         if ($_SESSION['user_type'] == 'student') {
             $this->redirect("/student/index");
         }
+    }
+
+    /**
+     * Admin constructor.
+     * @param array $route_params parameters from the route
+     * @return void
+     */
+    public function __construct(array $route_params)
+    {
+        parent::__construct($route_params);
     }
 
     /**

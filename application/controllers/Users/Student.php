@@ -10,9 +10,10 @@ use application\controllers\Users;
  */
 class Student extends \core\Controller implements Users
 {
+    private $user_key;
 
     /**
-     * Before Filter
+     * Before Filter - called before an action method.
      * @return void
      */
     protected function before()
@@ -43,6 +44,16 @@ class Student extends \core\Controller implements Users
         if ($_SESSION['user_type'] == 'admin') {
             $this->redirect("/admin/index");
         }
+    }
+
+    /**
+     * Student constructor.
+     * @param array $route_params parameters from the route
+     * @return void
+     */
+    public function __construct(array $route_params)
+    {
+        parent::__construct($route_params);
     }
 
     /**
