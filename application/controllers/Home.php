@@ -2,6 +2,7 @@
 namespace application\controllers;
 
 use \core\Controller;
+use core\Misc;
 use core\Router;
 use \core\View;
 use \application\controllers\admin;
@@ -15,7 +16,14 @@ class Home extends Controller
      */
     protected function before()
     {
+        // essentially performs what getSessionVariables does, only does not redirect afterwards.
+        session_start();
 
+        if (isset($_SESSION['user_key'])) {
+            return $_SESSION;
+        } else {
+            session_destroy();
+        }
     }
 
     /**
