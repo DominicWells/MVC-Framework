@@ -10,7 +10,6 @@ use application\controllers\Users;
  */
 class Student extends \core\Controller implements Users
 {
-    private $user_key;
 
     /**
      * Before Filter - called before an action method.
