@@ -18,6 +18,12 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+{% if logged_in == true %}
+<p>Working</p>
+{% endif %}
+<form name="new user" method="post" action="">
+    <input type="submit" name="logout"  value="continue"/>
+</form>
     <div class="container-fluid">
         <nav id="site-navbar" class="navbar">
             <a class="navbar-brand" href="/">Online Examination Site</a>
