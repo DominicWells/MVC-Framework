@@ -30,6 +30,7 @@ abstract class Controller
         $this->route_params = $route_params;
         $this->user_ip = $_SERVER['REMOTE_ADDR'];
         $this->checkAccess();
+        $this->logout();
     }
 
     /**
@@ -94,6 +95,18 @@ abstract class Controller
     {
         header("Location: http://" . $_SERVER["HTTP_HOST"] . $location);
         exit;
+    }
+
+    /**
+     * Logs out the currently logged in user.
+     *
+     * @return void
+     */
+    protected function logout()
+    {
+        if (isset($_POST['logout'])) {
+            $this->redirect("");
+        }
     }
 
     /**

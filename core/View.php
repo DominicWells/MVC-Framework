@@ -40,6 +40,18 @@ class View
      */
     public static function renderTemplate($template,$args = array())
     {
+        // append logged in as a default parameter for the array.
+        $logged_in = Misc::checkUserLoggedIn();
+
+        if ($logged_in) {
+            $logged_in = true;
+        } else {
+            $logged_in = false;
+        }
+
+        $args["logged_in"] = $logged_in;
+        array_push($args,$logged_in);
+
         static $twig = NULL;
 
         if ($twig === NULL) {
