@@ -1,4 +1,13 @@
 /*
+Header & Nav menu
+ */
+
+#log-out {
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+/*
 Submissions and Forms
  */
 

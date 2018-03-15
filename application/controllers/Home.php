@@ -53,13 +53,20 @@ class Home extends Controller
         $attempts = \application\models\Home::checkLoginAttempts($this->user_ip);
 
         $errors = [];
+        $user_type = "";
 
         if ($attempts !== 0) {
             $remaining_attempts = 3 - $attempts;
             $errors[] = "Incorrect Credentials. Please retry! You have " . $remaining_attempts . " remaining attempt(s).";
         }
+
+        if (isset($_SESSION['user_type'])) {
+            $user_type = $_SESSION['user_type'];
+        }
+
         View::renderTemplate("Home/index.html", array(
-            "errors" => $errors
+            "errors" => $errors,
+            "user"   => $user_type
         ));
     }
 

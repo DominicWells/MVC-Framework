@@ -7,13 +7,14 @@
         <h1>Welcome</h1>
         <p>Please Login below to access the examination site.</p>
     </div>
-
+    {% if logged_in == false %}
     {% if errors %}
     <div class="alert alert-danger" role="alert">
         {% for error in errors %}
         <li class="error-list">{{error}}</li>
         {% endfor %}
     </div>
+    {% endif %}
     {% endif %}
     <div id="login-form-error" class="alert alert-danger" role="alert">
         <li class="error-list">You cannot submit a form with no input specified!</li>

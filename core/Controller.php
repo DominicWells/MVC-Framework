@@ -105,6 +105,13 @@ abstract class Controller
     protected function logout()
     {
         if (isset($_POST['logout'])) {
+
+            session_start();
+
+            $_SESSION = array();
+
+            session_destroy();
+
             $this->redirect("");
         }
     }
