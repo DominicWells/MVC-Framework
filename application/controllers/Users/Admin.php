@@ -3,6 +3,7 @@
 namespace application\controllers\Users;
 
 use application\controllers\Users;
+use core\View;
 /**
  * Class Admin
  * @package application\controllers\admin
@@ -59,6 +60,23 @@ class Admin extends \core\Controller implements Users
      * @return void
      */
     public function indexAction() {
-        echo "User admin index";
+
+        View::renderTemplate("admin/index.html", array(
+            // No Parameters
+        ));
+
+        if (isset($_POST['upload_profile_image'])) {
+            $this->uploadImage();
+        }
+    }
+
+    /**
+     * Uploads An Image.
+     *
+     * @return void
+     */
+    protected function uploadImage()
+    {
+        print_r($_REQUEST);
     }
 }
