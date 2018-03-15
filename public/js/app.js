@@ -11,4 +11,16 @@ $( document ).ready(function() {
             submission.preventDefault();
         }
     });
+
+    /*
+    Prevent uploading of No Image.
+     */
+    $('#upload-image').click( function ( submission ) {
+
+        if ( $('#profile-image-file').val() === '') {
+
+            alert("Please Attach a file before submitting!");
+            submission.preventDefault();
+        }
+    });
 });
