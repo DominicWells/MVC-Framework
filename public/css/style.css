@@ -24,7 +24,15 @@ Submissions and Forms
     display: none;
 }
 
-#login-form-submission {
+#login-form-submission, #upload-image {
     cursor: pointer;
     margin-top: 10px;
+}
+
+/*
+Admin Pages
+ */
+
+#admin-content {
+    padding: 25px;
 }
