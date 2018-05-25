@@ -59,16 +59,31 @@
     </span>
 </nav>
 
-<!--<div class="row">-->
-        <!--<form method="post" action="" enctype="multipart/form-data">-->
-            <!--<h4>upload Profile Picture</h4>-->
-            <!--&lt;!&ndash;<img src="/images/{{profile_image}}" alt="Profile Image"/>&ndash;&gt;-->
-            <!--<input type="file" name="image" id="profile-image-file">-->
-            <!--<button id="upload-image" class="btn btn-outline-info" type="submit" name="upload_profile_image">Upload</button>-->
-        <!--</form>-->
-<!--</div>-->
-<div class="container">
-
+<div class="container" id="admin-content">
+    <div class="row">
+        <div class="col">
+            <form method="post" action="" enctype="multipart/form-data">
+                <h4>upload Profile Picture</h4>
+                <img src="/images/{{profile_image}}" alt="Profile Image"/>
+                <input type="file" name="image" id="profile-image-file">
+                {% if filetype_error == true %}
+                <div class="alert alert-danger" role="alert">
+                    <li class="error-list">{{filetype_error}}</li>
+                </div>
+                {% endif %}
+                {% if upload_success == true %}
+                <div class="alert alert-success" role="alert">
+                    <li>{{upload_success}}</li>
+                </div>
+                {% endif %}
+                <button id="upload-image" class="btn btn-outline-info" type="submit" name="upload_profile_image">Upload</button>
+            </form>
+        </div>
+        <div class="col">col</div>
+        <div class="w-100"></div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+    </div>
 </div>
 
 {% endblock %}
