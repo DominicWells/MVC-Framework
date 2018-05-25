@@ -5,7 +5,7 @@
 {% block body %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <h3 class="navbar-brand text-primary" href="#">Admin</h3>
+    <span class="navbar-brand mb-0 h1">Admin</span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,35 +24,51 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Delete
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
+            <li class ="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Update Topics
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another Action</a>
+                </div>
+            </li>
+            <li class ="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Update Questions
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another Action</a>
+                </div>
+            </li>
         </ul>
     </div>
+    <span class="navbar-text">
+      Welcome, {Name of User}
+    </span>
 </nav>
 
-<div class="row">
-    <div class="col-sm">
-        one
-    </div>
-    <div class="col-sm">
-        two
-    </div>
-    <div class="col-sm">
-        <form method="post" action="" enctype="multipart/form-data">
-            <h4>upload Profile Picture</h4>
-            <!--<img src="/images/{{profile_image}}" alt="Profile Image"/>-->
-            <input type="file" name="image" id="profile-image-file">
-            <button id="upload-image" class="btn btn-outline-info" type="submit" name="upload_profile_image">Upload</button>
-        </form>
-    </div>
+<!--<div class="row">-->
+        <!--<form method="post" action="" enctype="multipart/form-data">-->
+            <!--<h4>upload Profile Picture</h4>-->
+            <!--&lt;!&ndash;<img src="/images/{{profile_image}}" alt="Profile Image"/>&ndash;&gt;-->
+            <!--<input type="file" name="image" id="profile-image-file">-->
+            <!--<button id="upload-image" class="btn btn-outline-info" type="submit" name="upload_profile_image">Upload</button>-->
+        <!--</form>-->
+<!--</div>-->
+<div class="container">
+
 </div>
 
 {% endblock %}
