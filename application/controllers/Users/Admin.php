@@ -104,13 +104,26 @@ class Admin extends \core\Controller implements Users
                 // The User tried to upload an invalid file type.
                 $this->filetype_error = "You cannot upload invalid file types!!";
             } else {
+                // upload approved! Create a name for the image
+                $name = $_SESSION['user_type'] . "-" . $_SESSION['user_id'];
 
-                $name = $_FILES['image']['tmp_name'];
-                $new_path = $_SERVER['DOCUMENT_ROOT'] . '/images/Admin_Image' . "." . $ext;
+                $image = $_FILES['image']['tmp_name'];
+                $new_path = $_SERVER['DOCUMENT_ROOT'] . '/images/' . $name . "." . $ext;
 
-                move_uploaded_file($name, $new_path);
+                move_uploaded_file($image, $new_path);
                 $this->upload_success = "Congratulations! You have successfully uploaded a profile picture.";
             }
         }
+    }
+
+    /**
+     * Loads the User's Uploaded profile image (if it exists)
+     * and renders it. Otherwise, returns placeholder image
+     *
+     * @return
+     */
+    protected function loadImage()
+    {
+
     }
 }

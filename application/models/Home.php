@@ -23,11 +23,11 @@ class Home extends core\Model
 
             $connection = static::getDB();
 
-            $stmt = $connection->prepare("SELECT priviliges FROM users WHERE Username=:username AND Password=:key");
+            $stmt = $connection->prepare("SELECT user_id,priviliges FROM users WHERE Username=:username AND Password=:key");
 
             $stmt->execute(array("username" => $username,"key" => $key));
 
-            $result = $stmt->fetchColumn();
+            $result = $stmt->fetch();
 
             return $result;
 

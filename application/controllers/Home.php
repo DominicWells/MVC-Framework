@@ -78,26 +78,26 @@ class Home extends Controller
      */
     public function login()
     {
-        $username = $_POST['user'];
+        $this->username = $_POST['user'];
         $key = $_POST['key'];
 
         //$key = password_hash($key,PASSWORD_BCRYPT);
 
-        $username = htmlspecialchars($username);
+        $this->username = htmlspecialchars($this->username);
 
-        $user = \application\models\Home::checkCredentials($username,$key);
+        $user = \application\models\Home::checkCredentials($this->username,$key);
 
-        if ($user) {
+        $this->user_id = $user['user_id'];
 
-            switch ($user) {
-
+        if ($user['priviliges']) {
+            switch ($user['priviliges']) {
                 case "admin":
-                    $this->startSession($this->user_ip,$key,$user);
+                    $this->startSession($this->user_ip,$key,$this->user_id,$user['priviliges'],$this->username);
                     $this->redirect( "/admin/index");
                     break;
 
                 case "student":
-                    $this->startSession($this->user_ip,$key,$user);
+                    $this->startSession($this->user_ip,$key,$this->user_id,$user['priviliges'],$this->username);
                     $this->redirect("/student/index");
                     break;
                 }
@@ -117,20 +117,25 @@ class Home extends Controller
 
     /**
      * Once user is validated, start a session so that he/she can continue to access the site
+     * storing valuable data in the started session
      *
      * @param $user_ip: the current user's IP
      * @param $key: The current user's validated key
+     * @param $user_id: The current user's unique id
+     * @param $user_type: The priviliges of the current user
      * @param $user: The current user privileges
      *
      * @return void
      */
-    private function startSession($user_ip,$key,$user)
+    private function startSession($user_ip,$key,$user_id,$user,$username)
     {
         session_start();
 
         $_SESSION['IP'] = $user_ip;
         $_SESSION['user_key'] = $key;
+        $_SESSION['user_id'] = $user_id;
         $_SESSION['user_type'] = $user;
+        $_SESSION['user_name'] = $username;
     }
 
 }
