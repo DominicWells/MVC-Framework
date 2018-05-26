@@ -21,6 +21,18 @@ abstract class Controller
     protected $user_ip;
 
     /**
+     * The current user's username to access the site
+     * @var string
+     */
+    protected $username;
+
+    /**
+     * The current user's unique id
+     * @var integer
+     */
+    protected $user_id;
+
+    /**
      * Class constructor.
      * @param array $route_params Parameters from the route
      * @return void
