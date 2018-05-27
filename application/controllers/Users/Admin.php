@@ -76,16 +76,22 @@ class Admin extends \core\Controller implements Users
 
         // store current user username in variable to display in view
         $this->username = $_SESSION['user_name'];
+        $this->user_id = $_SESSION['user_id'];
+
+        // get the required image
+        $image_path = $this->loadImage();
 
         if (isset($_POST['upload_profile_image'])) {
             $this->uploadImage();
         }
 
         View::renderTemplate("admin/index.html", array(
-            "username" => $this->username,
+            "username"       => $this->username,
             "filetype_error" => $this->filetype_error,
-            "upload_success" => $this->upload_success
+            "upload_success" => $this->upload_success,
+            "image_path"     => $image_path
         ));
+
     }
 
     /**
@@ -124,10 +130,23 @@ class Admin extends \core\Controller implements Users
      * Loads the User's Uploaded profile image (if it exists)
      * and renders it. Otherwise, returns placeholder image
      *
-     * @return
+     * @return: appropriate image path
      */
     protected function loadImage()
     {
+        $image_name = "admin-" . $this->user_id;
+        // query database for an image matching the id of the given user
+        $file = glob($_SERVER['DOCUMENT_ROOT'] . "/images/$image_name.*");
+
+        if (count($file) === 1) {
+
+            $file = str_replace("C:/Users/Dom-Wells/workspace/Framework/public","",$file);
+
+            return $file[0];
+        } else {
+            // no image uploaded, so use the placeholder image.
+            return "/images/placeholder.jpg";
+        }
 
     }
 }
