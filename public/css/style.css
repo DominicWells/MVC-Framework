@@ -8,6 +8,14 @@ Header & Nav menu
 }
 
 /*
+Footer
+ */
+
+#footer {
+    cursor: pointer
+}
+
+/*
 Submissions and Forms
  */
 
@@ -27,6 +35,15 @@ Submissions and Forms
 #login-form-submission, #upload-image {
     cursor: pointer;
     margin-top: 10px;
+}
+
+/*
+Lists
+ */
+
+.list-group-item-hover:hover {
+    background-color: #bee5eb;
+    cursor: pointer;
 }
 
 /*

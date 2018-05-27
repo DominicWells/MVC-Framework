@@ -45,13 +45,15 @@
         {% endblock %}
             <!-- End Main Content Body -->
         </div>
-        <footer class="fixed-bottom">
-            <div class="container text-center">
+        <footer class="fixed-bottom text-center">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#footerLinks" aria-expanded="false" aria-controls="footerLinks" id="footer">
                 <h6>Copyright Dominic Wells 2017 &copy;</h6>
-                <ul class="list-group">
-                    <li class="list-group-item">Contact</li>
-                    <li class="list-group-item">Address</li>
-                    <li class="list-group-item">Company</li>
+            </button>
+            <div class="container text-center collapse" id="footerLinks">
+                <ul class="list-group card card-group">
+                    <li class="list-group-item list-group-item-hover">Contact</li>
+                    <li class="list-group-item list-group-item-hover">Address</li>
+                    <li class="list-group-item list-group-item-hover">Company</li>
                 </ul>
             </div>
         </footer>
