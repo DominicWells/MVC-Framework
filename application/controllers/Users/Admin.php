@@ -74,11 +74,15 @@ class Admin extends \core\Controller implements Users
     public function indexAction()
     {
 
+        // store current user username in variable to display in view
+        $this->username = $_SESSION['user_name'];
+
         if (isset($_POST['upload_profile_image'])) {
             $this->uploadImage();
         }
 
         View::renderTemplate("admin/index.html", array(
+            "username" => $this->username,
             "filetype_error" => $this->filetype_error,
             "upload_success" => $this->upload_success
         ));
