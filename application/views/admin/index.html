@@ -64,7 +64,7 @@
         <div class="col">
             <form method="post" action="" enctype="multipart/form-data">
                 <h4>upload Profile Picture</h4>
-                <img src="/images/{{profile_image}}" alt="Profile Image"/>
+                <img src="{{image_path}}" alt="Profile Image" width="300" height="300"/>
                 <input type="file" name="image" id="profile-image-file">
                 {% if filetype_error == true %}
                 <div class="alert alert-danger" role="alert">
