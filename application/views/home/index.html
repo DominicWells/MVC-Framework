@@ -5,7 +5,17 @@
 {% block body %}
     <div class="text-center">
         <h1>Welcome</h1>
+        {% if logged_in == true %}
+            <p>It appears that you are already logged in!</p>
+        <a href="/{{user}}/index" class="badge badge-info">Return to my Account</a>
+        <p>or</p>
+        <form name="log-out" method="post" action="">
+            <button id="log-out" class="badge badge-warning" type="submit" name="logout">Log Out</button>
+        </form>
+        {% endif %}
+        {% if logged_in == false %}
         <p>Please Login below to access the examination site.</p>
+        {% endif %}
     </div>
     {% if logged_in == false %}
     {% if errors %}

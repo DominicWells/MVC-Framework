@@ -13,6 +13,10 @@ $( document ).ready(function() {
     });
 
     /*
+    // ToDo: implement 'already logged in' message to logged in user trying to log in again, and delay page redirect.
+     */
+
+    /*
     Prevent uploading of No Image.
      */
     $('#upload-image').click( function ( submission ) {
