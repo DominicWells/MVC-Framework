@@ -78,40 +78,46 @@ class Home extends Controller
      */
     public function login()
     {
-        $this->username = $_POST['user'];
-        $key = $_POST['key'];
 
-        //$key = password_hash($key,PASSWORD_BCRYPT);
+        if ($_SESSION == false) {
+            $this->username = $_POST['user'];
+            $key = $_POST['key'];
 
-        $this->username = htmlspecialchars($this->username);
+            //$key = password_hash($key,PASSWORD_BCRYPT);
 
-        $user = \application\models\Home::checkCredentials($this->username,$key);
+            $this->username = htmlspecialchars($this->username);
 
-        $this->user_id = $user['user_id'];
+            $user = \application\models\Home::checkCredentials($this->username, $key);
 
-        if ($user['priviliges']) {
-            switch ($user['priviliges']) {
-                case "admin":
-                    $this->startSession($this->user_ip,$key,$this->user_id,$user['priviliges'],$this->username);
-                    $this->redirect( "/admin/index");
-                    break;
+            $this->user_id = $user['user_id'];
 
-                case "student":
-                    $this->startSession($this->user_ip,$key,$this->user_id,$user['priviliges'],$this->username);
-                    $this->redirect("/student/index");
-                    break;
+            if ($user['priviliges']) {
+                switch ($user['priviliges']) {
+                    case "admin":
+                        $this->startSession($this->user_ip, $key, $this->user_id, $user['priviliges'], $this->username);
+                        $this->redirect("/admin/index");
+                        break;
+
+                    case "student":
+                        $this->startSession($this->user_ip, $key, $this->user_id, $user['priviliges'], $this->username);
+                        $this->redirect("/student/index");
+                        break;
                 }
-        } else {
-            //the credentials are incorrect.
-            $current_time = date("Y-m-d h:i:sa");
-            \application\models\Home::updateLoginAttempts($this->user_ip,$current_time);
+            } else {
+                //the credentials are incorrect.
+                $current_time = date("Y-m-d h:i:sa");
+                \application\models\Home::updateLoginAttempts($this->user_ip, $current_time);
 
-            $attempts = \application\models\Home::checkLoginAttempts($this->user_ip);
+                $attempts = \application\models\Home::checkLoginAttempts($this->user_ip);
 
-            if ($attempts > 3) {
-                \application\models\Users::banIP($this->user_ip);
+                if ($attempts > 3) {
+                    \application\models\Users::banIP($this->user_ip);
 
+                }
             }
+        } else {
+            $account_page = $_SESSION['user_type'];
+            $this->redirect('/' . $account_page . '/index');
         }
     }
 
