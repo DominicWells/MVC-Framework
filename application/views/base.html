@@ -26,18 +26,6 @@
     <div class="container-fluid">
         <nav id="site-navbar" class="navbar navbar-light bg-faded">
             <a class="navbar-brand" href="/">Online Examination Site</a>
-            {% if logged_in == true %}
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{user}}/index">Proceed to Your Profile</a>
-                </li>
-                <li class="nav-item">
-                    <form name="log-out" method="post" action="">
-                        <button id="log-out" class="btn btn-outline-success" type="submit" name="logout">Log Out</button>
-                    </form>
-                </li>
-            </ul>
-            {% endif %}
         </nav>
         <div class="container">
             <!-- Main Content Body -->
