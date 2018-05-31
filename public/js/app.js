@@ -27,4 +27,8 @@ $( document ).ready(function() {
             submission.preventDefault();
         }
     });
+
+    /*
+    ToDo: implement code to only show upload button when file is selected
+     */
 });
