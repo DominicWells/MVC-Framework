@@ -7,6 +7,17 @@ Header & Nav menu
     border-radius: 25px;
 }
 
+#parallax {
+    height: 150px;
+    width: auto;
+    overflow: hidden;
+    text-align: center;
+    background-image: url("../images");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 /*
 Footer
  */
