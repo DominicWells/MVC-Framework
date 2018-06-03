@@ -54,43 +54,130 @@
             </li>
         </ul>
     </div>
-    <span class="navbar-text">
+    <span class="navbar-text hidden-sm-down">
       Welcome, {{username}}
     </span>
+    <form name="log-out" method="post" action="" class="form-inline my-2 my-lg-0">
+        <button id="log-out" class="btn btn-outline-warning my-2 my-sm-0 hidden-sm-down" type="submit" name="logout">Logout</button>
+    </form>
 </nav>
 
 <div class="container" id="admin-content">
     <div class="row">
         <div class="col">
-            <form method="post" action="" enctype="multipart/form-data">
-                <h4>upload Profile Picture</h4>
-                <img src="{{image_path}}" alt="Profile Image" width="300" height="300"/>
-                <input type="file" name="image" id="profile-image-file">
-                {% if filetype_error == true %}
-                <div class="alert alert-danger" role="alert">
-                    <li class="error-list">{{filetype_error}}</li>
-                </div>
-                {% endif %}
-                {% if upload_success == true %}
-                <div class="alert alert-success" role="alert">
-                    <li>{{upload_success}}</li>
-                </div>
-                {% endif %}
-                <button id="upload-image" class="btn btn-outline-info" type="submit" name="upload_profile_image">Upload</button>
-            </form>
+            <h4>My Profile</h4>
+            <div class="container-fluid align-middle">
+                <form method="post" action="" enctype="multipart/form-data">
+                    <img src="{{image_path}}" alt="Profile Image" width="100" height="80"/>
+                    <input type="file" name="image" id="profile-image-file">
+                    {% if filetype_error == true %}
+                    <div class="alert alert-danger" role="alert">
+                        <li class="error-list">{{filetype_error}}</li>
+                    </div>
+                    {% endif %}
+                    {% if upload_success == true %}
+                    <div class="alert alert-success" role="alert">
+                        <li>{{upload_success}}</li>
+                    </div>
+                    {% endif %}
+                    <button id="upload-image" class="btn btn-info" type="submit" name="upload_profile_image">Upload</button>
+                </form>
+            </div>
+            <table id="user-details-table" class="table table-striped">
+                <tbody>
+                <tr>
+                    <th scope="row">Username:</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">Date of Birth:</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">Member Since:</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">Questions Created:</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">Topics Created:</th>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col">
             <h4>Recently Updated by you:</h4>
             <p><!-- ToDo: implement functionality to return all the given user's recently changed components --></p>
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="row">
-        <div class="col">
-
-        </div>
+        <div class="col"></div>
         <div class="col">
             <h4>Recently Updated by Other Admins:</h4>
             <p><!-- //ToDo: Implement functionality to return ALL recently updated components --></p>
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

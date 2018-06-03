@@ -5,6 +5,7 @@ Header & Nav menu
 #log-out {
     cursor: pointer;
     border-radius: 25px;
+    margin-left: 20px;
 }
 
 #parallax {
@@ -63,4 +64,8 @@ Admin Pages
 
 #admin-content {
     padding: 25px;
+}
+
+#user-details-table {
+    margin-top: 30px;
 }
