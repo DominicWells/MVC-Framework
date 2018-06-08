@@ -27,7 +27,11 @@
         <section id="parallax" class="parallax">
             <h2 class="parallax text-center">Online Examination Site</h2>
         </section>
-        <div class="container">
+        <div class="container" id="exam-site-container">
+            <!-- Menu -->
+        {% block menu %}
+        {% endblock %}
+            <!-- End Menu -->
             <!-- Main Content Body -->
         {% block body %}
         {% endblock %}

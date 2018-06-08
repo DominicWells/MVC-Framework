@@ -95,6 +95,18 @@ class Admin extends \core\Controller implements Users
     }
 
     /**
+     * Show the Add new question / topic functionality
+     *
+     * @return void
+     */
+    public function Add()
+    {
+        View::renderTemplate("admin/add.html", array(
+
+        ));
+    }
+
+    /**
      * Uploads An Image.
      *
      * @return void
