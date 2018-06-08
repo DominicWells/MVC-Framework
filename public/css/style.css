@@ -1,4 +1,14 @@
 /*
+Containers
+ */
+
+@media (min-width: 1200px) {
+    #exam-site-container,#admin-content {
+        max-width: 1400px;
+    }
+}
+
+/*
 Header & Nav menu
  */
 
